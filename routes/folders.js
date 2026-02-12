@@ -32,10 +32,28 @@ router.get('/', authMiddleware, async (req, res) => {
   } catch (err) {
     res.status(500).json({message: 'Get folders error'});
   }
-  router.delete('/:id', authMiddleware, async (req, res) => {
-    await Folder.deleteOne({_id: req.params.id, userId: req.userId});
-    res.json({success: true});
-  });
+});
+// get one folder
+router.get('/:folderId', authMiddleware, async (req, res) => {
+  try {
+    const folder = await Folder.findOne({
+      _id: req.params.folderId,
+      userId: req.userId,
+    });
+
+    if (!folder) {
+      return res.status(404).json({message: 'Folder not found'});
+    }
+
+    res.json(folder);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({message: 'Server error'});
+  }
 });
 
+router.delete('/:id', authMiddleware, async (req, res) => {
+  await Folder.deleteOne({_id: req.params.id, userId: req.userId});
+  res.json({success: true});
+});
 export default router;
