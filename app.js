@@ -10,7 +10,7 @@ import registerRoute from './routes/registration.js';
 import forgotPasswordRoute from './routes/forgotPassword.js';
 import folderRoutes from './routes/folders.js';
 import wordRoutes from './routes/words.js';
-
+const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors());
@@ -29,6 +29,6 @@ mongoose
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server started on ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`Server started on ${PORT}`);
 });
