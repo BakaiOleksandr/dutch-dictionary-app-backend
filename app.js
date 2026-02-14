@@ -19,6 +19,9 @@ app.use('/auth', meRoute);
 app.use('/auth', forgotPasswordRoute);
 app.use('/folders', folderRoutes);
 app.use('/words', wordRoutes);
+app.get('/', (req, res) => {
+  res.send('Backend is running');
+});
 
 // routes
 app.use('/auth', loginRoute);
