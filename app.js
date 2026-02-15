@@ -10,11 +10,14 @@ import registerRoute from './routes/registration.js';
 import forgotPasswordRoute from './routes/forgotPassword.js';
 import folderRoutes from './routes/folders.js';
 import wordRoutes from './routes/words.js';
+import articleRoute from './routes/article.js';
+
 const PORT = process.env.PORT || 5000;
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+app.use('/article', articleRoute);
 app.use('/auth', meRoute);
 app.use('/auth', forgotPasswordRoute);
 app.use('/folders', folderRoutes);
